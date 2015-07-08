@@ -7,15 +7,15 @@
 PATH="/usr/local/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin"
 
 megacli=$(which megacli)
-data_tmp="/run/megacli-raid-data-harvester.tmp"
-data_out="/run/megacli-raid-data-harvester.out"
-all_keys='/run/keys'
+data_tmp="/tmp/megacli-raid-data-harvester.tmp"
+data_out="/tmp/megacli-raid-data-harvester.out"
+all_keys='/tmp/keys'
 zbx_server=$(grep ^Server= /etc/zabbix/zabbix_agentd.conf |cut -d= -f2|cut -d, -f1)
 zbx_hostname=$(grep ^Hostname= /etc/zabbix/zabbix_agentd.conf |cut -d= -f2|cut -d, -f1)
-zbx_data='/run/zabbix-sender-megacli-raid-data.in'
-adp_list=$(/usr/libexec/zabbix-extensions/scripts/megacli-adp-discovery.sh raw)
-ld_list=$(/usr/libexec/zabbix-extensions/scripts/megacli-ld-discovery.sh raw)
-pd_list=$(/usr/libexec/zabbix-extensions/scripts/megacli-pd-discovery.sh raw)
+zbx_data='/tmp/zabbix-sender-megacli-raid-data.in'
+adp_list=$(/usr/local/sbin/zabbix-extensions/files/hwraid-megacli/scripts/megacli-adp-discovery.sh raw)
+ld_list=$(/usr/local/sbin/zabbix-extensions/files/hwraid-megacli/scripts/megacli-ld-discovery.sh raw)
+pd_list=$(/usr/local/sbin/zabbix-extensions/files/hwraid-megacli/scripts/megacli-pd-discovery.sh raw)
 
 echo -n > $data_tmp
 
